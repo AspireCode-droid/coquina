@@ -1,103 +1,210 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import {
+  ChefHat,
+  MessageCircle,
+  Scan,
+  Users,
+  Check,
+  ArrowRight,
+  Play,
+  Moon,
+  Sun,
+  Utensils,
+  Leaf,
+  Clock,
+  TrendingUp,
+  Star,
+  Menu,
+  X,
+} from "lucide-react"
+import { useTheme } from "next-themes"
+import { LandingHero } from "@/components/landingPage/landingHero"
+import { Features } from "@/components/landingPage/features"
+import { Benefits } from "@/components/landingPage/benefits"
+import { Testimonials } from "@/components/landingPage/testimonials"
+import { PricingSection } from "@/components/landingPage/pricing"
+import {Cta} from "@/components/cta"
+
+export default function CulinaAILanding() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                <ChefHat className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-orange-500">Coquina </span>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+                Features
+              </a>
+              <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors">
+                Benefits
+              </a>
+              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">
+                Pricing
+              </a>
+              <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">
+                Reviews
+              </a>
+            </div>
+
+            <div className="hidden md:flex items-center space-x-4">
+              <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </Button>
+              <Button variant="ghost">Sign In</Button>
+              <Button className="bg-orange-500 hover:bg-orange-600">Get Started</Button>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t py-4">
+              <div className="flex flex-col space-y-4">
+                <a href="#features" className="text-muted-foreground hover:text-foreground">
+                  Features
+                </a>
+                <a href="#benefits" className="text-muted-foreground hover:text-foreground">
+                  Benefits
+                </a>
+                <a href="#pricing" className="text-muted-foreground hover:text-foreground">
+                  Pricing
+                </a>
+                <a href="#testimonials" className="text-muted-foreground hover:text-foreground">
+                  Reviews
+                </a>
+                <div className="flex flex-col space-y-2 pt-4 border-t">
+                  <Button variant="ghost" className="justify-start">
+                    Sign In
+                  </Button>
+                  <Button className="bg-orange-500 hover:bg-orange-600 justify-start">Get Started</Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      <LandingHero />
+
+      <Features />
+
+      <Benefits />
+
+      <Testimonials />
+
+      <PricingSection />
+
+      <Cta />
+
+      {/* Footer */}
+      <footer className="bg-gray-50 dark:bg-gray-900 border-t">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                  <ChefHat className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold text-orange-500">Culina AI</span>
+              </div>
+              <p className="text-muted-foreground">
+                Your intelligent kitchen assistant for smarter cooking, healthier eating, and less food waste.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Product</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a href="#" className="block hover:text-foreground">
+                  Features
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Pricing
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  API
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Integrations
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a href="#" className="block hover:text-foreground">
+                  About
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Blog
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Careers
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Support</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a href="#" className="block hover:text-foreground">
+                  Help Center
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Privacy Policy
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Terms of Service
+                </a>
+                <a href="#" className="block hover:text-foreground">
+                  Status
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t mt-12 pt-8 text-center text-sm text-muted-foreground">
+            © 2024 Culina AI. All rights reserved.
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
