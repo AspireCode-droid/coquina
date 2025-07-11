@@ -2,8 +2,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Star } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -78,7 +76,7 @@ export function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="text-muted-foreground text-sm leading-relaxed">
-                                        “{testimonial.quote}”
+                                        `&apos;`{testimonial.quote}`&apos;`
                                     </p>
                                 </div>
 

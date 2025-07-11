@@ -10,7 +10,7 @@ export function Cta(){
                     <h2 className="text-3xl lg:text-5xl font-bold text-white">Ready to Transform Your Kitchen?</h2>
 
                     <p className="text-xl text-orange-100 max-w-2xl mx-auto">
-                        Join thousands of home cooks who've already discovered the power of AI-assisted cooking. Start your free
+                        Join thousands of home cooks who`&apos;`ve already discovered the power of AI-assisted cooking. Start your free
                         trial today.
                     </p>
 

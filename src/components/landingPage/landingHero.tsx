@@ -1,4 +1,4 @@
-import { ChefHat, Play, ArrowRight, MessageCircle } from "lucide-react"
+import { Play, ArrowRight} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"

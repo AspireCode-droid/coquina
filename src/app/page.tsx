@@ -2,23 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import {
   ChefHat,
-  MessageCircle,
-  Scan,
-  Users,
-  Check,
-  ArrowRight,
-  Play,
   Moon,
   Sun,
-  Utensils,
-  Leaf,
-  Clock,
-  TrendingUp,
-  Star,
   Menu,
   X,
 } from "lucide-react"

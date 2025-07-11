@@ -1,4 +1,4 @@
-
+/*
 import { ChefHat, MessageCircle } from "lucide-react"
 import { Button } from "./ui/button"
 
@@ -46,4 +46,4 @@ export function ChatUI(){
       </div>
     </div>
   )
-}
+}*/
