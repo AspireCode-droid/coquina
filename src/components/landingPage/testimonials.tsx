@@ -49,14 +49,14 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold mb-4">What Our Users Say</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto tracking-tight">
             Thousands of home cooks trust Culina AI to transform their kitchen experience.
           </p>
         </div>
-        <Marquee gradient={false} speed={40} pauseOnHover>
+        <Marquee gradient={false}  delay={0.5} speed={40} pauseOnHover>
             <Carousel>
                 <CarouselContent className="-ml-1">
                     {testimonials.map((testimonial, index) => (
@@ -76,7 +76,7 @@ export function Testimonials() {
                                         ))}
                                     </div>
                                     <p className="text-muted-foreground text-sm leading-relaxed">
-                                        `&apos;`{testimonial.quote}`&apos;`
+                                        &apos; {testimonial.quote} &apos;
                                     </p>
                                 </div>
 

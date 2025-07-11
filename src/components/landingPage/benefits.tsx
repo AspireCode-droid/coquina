@@ -74,7 +74,7 @@ export function Benefits() {
               priority
             />
           </div>
-
+          
         </div>
       </div>
     </section>
