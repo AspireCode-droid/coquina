@@ -69,7 +69,9 @@ export function Header(){
                     >
                         Sign In
                     </Button>
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white">Get Started</Button>
+                    <Link href="/auth">
+                        <Button className="bg-blue-500 hover:bg-blue-600 text-white">Get Started</Button>
+                    </Link>    
                     </div>
 
                     {/* Mobile menu button */}
@@ -106,11 +108,14 @@ export function Header(){
                         Pricing
                         </Link>
                         <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-800">
-                        <Button variant="ghost" className="justify-start">
-                            Sign In
-                        </Button>
-                        <Button className="bg-blue-500 hover:bg-blue-600 text-white justify-start">Get Started</Button>
+                            <Button variant="ghost" className="justify-start">
+                                Sign In
+                            </Button>
+                            <Link href='/auth'>
+                            <Button className="bg-blue-500 hover:bg-blue-600 text-white justify-start">Get Started</Button>
+                            </Link>
                         </div>
+                       
                     </div>
                 </div>
             )}
