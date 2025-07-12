@@ -1,7 +1,4 @@
-// src/app/auth/page.tsx
-'use client'
 
-import { useState } from "react"
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -22,8 +19,6 @@ import { Mail, Lock, User, ChefHat } from 'lucide-react'
 import Link from "next/link"
 
 export default function AuthPage() {
-  const [loading, setLoading] = useState(false)
-
   return (
     <div className="min-h-screen flex bg-foreground">
         <div className="hidden lg:flex w-1/2 h-auto bg-gray-100 items-center justify-center">
@@ -90,9 +85,9 @@ export default function AuthPage() {
                             </form>
                             </CardContent>
                             <CardFooter className="text-center pt-2">
-                            <a href="#" className="text-sm text-orange-500 hover:underline">
+                            <Link href="/auth/forgot-password" className="text-sm text-orange-500 hover:underline">
                                 Forgot password?
-                            </a>
+                            </Link>
                             </CardFooter>
                         </Card>
                     </TabsContent>
