@@ -84,10 +84,10 @@ export default function AuthPage() {
                                 </Button>
                             </form>
                             </CardContent>
-                            <CardFooter className="text-center pt-2">
-                            <Link href="/auth/forgot-password" className="text-sm text-orange-500 hover:underline">
-                                Forgot password?
-                            </Link>
+                            <CardFooter className="text-center pt-2 pl-6">
+                                <Link href="/auth/forgot-password" className="text-sm text-orange-500 hover:underline">
+                                    Forgot password?
+                                </Link>
                             </CardFooter>
                         </Card>
                     </TabsContent>
