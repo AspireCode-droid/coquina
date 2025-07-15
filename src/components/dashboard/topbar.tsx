@@ -30,7 +30,7 @@ export function TopBar() {
           <Input
             type="search"
             placeholder={isMobile? "Search recipes...." : "Search recipes, ingredients..."}
-            className="pl-10 bg-muted/50 min-w-md"
+            className="pl-10 bg-muted/50 min-w-md max-w-2xl flex flex-1"
           />
         </div>
       </div>
@@ -52,7 +52,7 @@ export function TopBar() {
             <Button variant="ghost" className="h-9 w-9 p-0 rounded-full" aria-label="User Menu">
               <Avatar className="h-8 w-8">
                 <AvatarImage src="/placeholder.svg?height=32&width=32" />
-                <AvatarFallback className="bg-gradient-to-br from-orange-500 to-emerald-500 text-white text-xs">
+                <AvatarFallback className="bg-gradient-to-br from-amber-500 to-sky-500 text-white text-xs">
                   JD
                 </AvatarFallback>
               </Avatar>

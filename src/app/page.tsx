@@ -1,4 +1,3 @@
-"use client"
 
 
 import { LandingHero } from "@/components/landingPage/landingHero"
@@ -14,7 +13,7 @@ export default function CulinaAILanding() {
 
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <Header />
       
       <LandingHero />
@@ -30,7 +29,6 @@ export default function CulinaAILanding() {
       <Cta />
 
       <Footer />
-
-    </div>
+    </>
   )
 }
