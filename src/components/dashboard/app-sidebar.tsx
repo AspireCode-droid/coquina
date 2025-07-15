@@ -1,179 +1,41 @@
 "use client"
 
-import * as React from "react"
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  ChefHat,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
-import { Collapsible } from "../ui/collapsible"
-import { NavMain } from "@/components/dashboard/nav-main"
-import { NavProjects } from "@/components/dashboard/nav-projects"
-import { NavUser } from "@/components/dashboard/nav-user"
+import { ChefHat } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
-
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-}
-import { useSidebar } from "@/components/ui/sidebar"
+import { MenuItems } from "./menuItems"
 
 export function AppSidebar() {
+  const { open } = useSidebar()
+
   return (
-    <Sidebar collapsible="icon" >
-      <SidebarHeader>
-        <Collapsible
-          asChild
-          className="group/collapsible"
-        >
-          <ChefHat/>
-        </Collapsible>
+    <Sidebar collapsible="icon" className="transition-all duration-200">
+      <SidebarHeader className="flex items-start py-4">
+        <div className={`flex items-center space-x-2 px-2 ${open ? 'px-3' : 'px-0' }`}>
+          <ChefHat className="w-5 h-5 text-orange-600 flex-shrink-0" />
+          <div
+            className={`
+              overflow-hidden transition-all duration-300 
+              ${open ? 'w-auto opacity-100' : 'w-0 opacity-0'}
+            `}
+          >
+            <span className="text-xl tracking-tight font-semibold text-orange-600 whitespace-nowrap">
+              Coquina
+            </span>
+          </div>
+        </div>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <MenuItems />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {/* Footer links or version info here */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

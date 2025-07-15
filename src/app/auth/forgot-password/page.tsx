@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,8 +15,6 @@ const ForgotPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate password reset process
     setTimeout(() => {
       setIsLoading(false);
       setEmailSent(true);

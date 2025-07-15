@@ -30,7 +30,7 @@ const sidebarItems = [
 
 export function MenuItems(){
   return(
-    <SidebarMenu className="space-y-1">
+    <SidebarMenu className="space-y-1 px-2">
       {sidebarItems.map((item) => (
         <SidebarMenuItem key={item.name}>
           <SidebarMenuButton asChild>
