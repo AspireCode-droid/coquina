@@ -2,7 +2,7 @@
 
 import { LandingHero } from "@/components/landingPage/landingHero"
 import { Features } from "@/components/landingPage/features"
-import { Benefits } from "@/components/landingPage/benefits"
+import { WhyChooseUs } from "@/components/landingPage/benefits"
 import { Testimonials } from "@/components/landingPage/testimonials"
 import { PricingSection } from "@/components/landingPage/pricing"
 import {Cta} from "@/components/cta"
@@ -20,7 +20,7 @@ export default function CulinaAILanding() {
 
       <Features />
 
-      <Benefits />
+      <WhyChooseUs />
 
       <Testimonials />
 

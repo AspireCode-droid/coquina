@@ -1,82 +1,61 @@
+import { ChefHat } from "lucide-react";
 
-import { ChefHat } from "lucide-react"
-
-export default function Footer(){
-    return(
-              <footer className="bg-gray-50 dark:bg-gray-900 border-t">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                  <ChefHat className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-orange-500">Culina AI</span>
+export default function Footer() {
+  return (
+    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
+                <ChefHat className="w-5 h-5 text-white" />
               </div>
-              <p className="text-muted-foreground">
-                Your intelligent kitchen assistant for smarter cooking, healthier eating, and less food waste.
-              </p>
+              <span className="text-2xl font-bold text-orange-500 tracking-tight">Coquina</span>
             </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="#" className="block hover:text-foreground">
-                  Features
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Pricing
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  API
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Integrations
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="#" className="block hover:text-foreground">
-                  About
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Blog
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Careers
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Contact
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <a href="#" className="block hover:text-foreground">
-                  Help Center
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Privacy Policy
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Terms of Service
-                </a>
-                <a href="#" className="block hover:text-foreground">
-                  Status
-                </a>
-              </div>
-            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              AI-powered kitchen assistant built to help you eat better, cook smarter, and waste less.
+            </p>
           </div>
 
-          <div className="border-t mt-12 pt-8 text-center text-sm text-muted-foreground">
-            © 2024 Culina AI. All rights reserved.
+          {/* Platform */}
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Platform</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-foreground transition">Features</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Pricing</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Integrations</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Developer API</a></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Company</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-foreground transition">About</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Careers</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Press</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Support</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#" className="hover:text-foreground transition">Help Center</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Status</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-foreground transition">Terms & Conditions</a></li>
+            </ul>
           </div>
         </div>
-      </footer>
-    )
+
+        <div className="border-t mt-12 pt-6 text-center text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Coquina. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
 }
