@@ -33,6 +33,14 @@ const features = [
 export function Features() {
   return (
     <section className="px-4 py-12 md:px-6 lg:px-12">
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          Your AI-Powered Kitchen Companion
+        </h2>
+        <p className="mt-4 text-muted-foreground text-base sm:text-lg">
+          Coquina isn’t just smart—it’s intuitive. From tracking ingredients to guiding your meals, explore the tools that make your kitchen intelligent and effortless.
+        </p>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {features.map((f, i) => (
           <div
