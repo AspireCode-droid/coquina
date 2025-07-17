@@ -1,15 +1,7 @@
-'use client';
-
 import Image from "next/image";
-import { Scan, Utensils, Users, MessageCircle } from "lucide-react";
-import { Card} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { Scan, Utensils, Users, MessageCircle } from "lucide-react";
 
 const features = [
   {
@@ -39,45 +31,48 @@ const features = [
 ];
 
 export function Features() {
-
   return (
-    <section id="features" className="py-20 bg-[#f9f5f0] dark:bg-gray-900">
-      {/* Heading */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <h2 className="features-heading text-5xl font-bold mb-4">
-          Cook Smarter. Stand Out.
-        </h2>
-        <p className="max-w-2xl mb-16">Dynamic tools, reimagined—personalized for your kitchen style.</p>
+    <section className="px-4 py-12 md:px-6 lg:px-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {features.map((f, i) => (
+          <div
+            key={f.title}
+            className={`
+              ${i === 0 ? "md:col-span-2" : ""}
+              ${i === 1 ? "md:col-span-1" : ""}
+              ${i === 2 ? "md:col-span-1" : ""}
+              ${i === 3 ? "md:col-span-2" : ""}
+            `}
+          >
+            <Card className="relative group overflow-hidden h-full">
+              <CardHeader className="flex items-center gap-2 pb-2">
+                <f.icon className="w-5 h-5 text-primary" />
+                <CardTitle className="text-lg font-semibold">{f.title}</CardTitle>
+              </CardHeader>
 
-        <div className="features-grid grid gap-6" style={{
-          display: 'grid',
-          gridTemplateAreas: `
-            "cardA cardA cardB"
-            "cardC cardD cardB"
-          `,
-          gridTemplateColumns: '2fr 2fr 1fr',
-          gridAutoRows: 'minmax(200px, auto)'
-        }}>
-          {features.map((f, i) => (
-            <div key={f.title}
-                className={`feature-card group`}
-                style={{
-                  gridArea: i === 0 ? 'cardA'
-                  : i === 1 ? 'cardB'
-                  : i === 2 ? 'cardC'
-                  : 'cardD'
-                }}>
-              <Card className="h-full overflow-hidden relative">
-              </Card>
-            </div>
-          ))}
-        </div>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">{f.description}</p>
 
-        {/* CTA */}
-        <div className="mt-14 text-center">
-          <Button size="lg" className="bg-cta px-6 py-3 rounded-full">Explore Features</Button>
-        </div>
+                <div className="relative w-full h-40 rounded-lg overflow-hidden">
+                  <Image
+                    src={f.image}
+                    alt={f.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="relative transition-opacity duration-300 pt-2">
+                  <Button variant="ghost" className="text-sm px-2 bg-coquina-start text-orange-600">
+                    Learn More
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
       </div>
     </section>
+
   );
 }
