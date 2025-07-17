@@ -82,7 +82,7 @@ export function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
               className={`relative rounded-2xl transition-all duration-300 ${
-                plan.highlight ? 'border-2 border-orange-500 shadow-xl scale-110' : 'border border-gray-200 dark:border-gray-700'
+                plan.highlight ? 'border-2 border-orange-500 shadow-xl' : 'border border-gray-200 dark:border-gray-700'
               }`}
             >
               {plan.highlight && (

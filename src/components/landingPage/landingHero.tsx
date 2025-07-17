@@ -1,110 +1,104 @@
-'use client'
+'use client';
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Play, ArrowRight, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-import { Play, ArrowRight, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { motion } from "framer-motion"
+gsap.registerPlugin(ScrollTrigger);
 
 export function LandingHero() {
-  const isMobile = useIsMobile()
+  const container = useRef<HTMLDivElement>(null);
+  const bg = useRef<HTMLDivElement>(null);
+  const text = useRef<HTMLDivElement>(null);
+  const scrollCue = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // Fade-in for the heading/text
+      gsap.fromTo(
+        text.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 2, delay: 0.5, ease: "power2.out" }
+      );
+
+      // Scroll-triggered timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top top",
+          end: isMobile ? "+=200" : "+=500",
+          scrub: 1.5,
+          anticipatePin: 1,
+        },
+      });
+      tl.fromTo(bg.current, { scale: 1 }, { scale: 1.05, ease: "none" });
+      tl.to(
+        text.current,
+        { y: -50, opacity: 0.5, duration: 2, ease: "power2.out", },
+        0
+      );
+
+      // Scroll cue animation
+      gsap.to(scrollCue.current, {
+        y: 10,
+        duration: 1.2,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    }, container);
+
+    return () => {
+      ScrollTrigger.getAll()
+        .filter(st => st.trigger === container.current)
+        .forEach(st => st.kill());
+      ctx.revert();
+    };
+  }, { scope: container });
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-
-      {/* Background Image with Ambient Motion */}
-      <motion.div
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.05 }}
-        transition={{ duration: 20, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
-        className="absolute inset-0"
-      >
+    <section
+      ref={container}
+      className="relative w-full h-screen overflow-hidden"
+    >
+      <div ref={bg} className="absolute inset-0 transform-gpu">
         <Image
           src={isMobile ? "/mobileHero.jpg" : "/desktopHero.jpg"}
-          alt="Person using Coquina kitchen assistant"
+          alt="Coquina kitchen assistant"
           fill
           className="object-cover brightness-90"
           priority
         />
-      </motion.div>
-
-      {/* Gradient Overlay for Text Contrast */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 dark:from-black/80 dark:via-black/60 to-transparent" />
-
-      {/* Content Block */}
-      <div className="absolute inset-0 flex items-center justify-start px-6 sm:px-10 lg:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-left text-white space-y-6 max-w-[90%] md:max-w-xl"
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <Badge className="bg-cta text-white px-4 py-1.5 rounded-full shadow-md">
-              AI-Powered Kitchen Assistant
-            </Badge>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight"
-          >
-            Cook Smarter, Live Better
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-md sm:text-xl leading-relaxed text-white/90"
-          >
-            Effortless cooking powered by AI. <strong>Track your ingredients.</strong> Discover real-time recipes. <strong>Master your meals—without the mess.</strong>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-col sm:flex-row justify-start gap-6 pt-6 max-w-[14rem] sm:max-w-none"
-          >
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring" }}>
-              <Button
-                size="lg"
-                className="bg-cta hover:bg-cta/70 text-white rounded-full px-6 py-3"
-              >
-                Start Free Trial <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring" }}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-cta hover:bg-white/10 hover:text-white rounded-full px-6 py-3"
-              >
-                <Play className="w-5 h-5 mr-2" />
-                Watch Demo
-              </Button>
-            </motion.div>
-          </motion.div>
-        </motion.div>
       </div>
-
-      {/* Scroll Cue */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-        className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white opacity-70"
-      >
-        <ChevronDown className="w-6 h-6 animate-bounce" />
-      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-transparent" />
+      <div className="absolute top-32 flex items-center px-6 sm:px-10 lg:px-20">
+        <div ref={text} className="space-y-6 max-w-xl text-white transform-gpu">
+          <Badge className="bg-cta text-white px-4 py-1.5 rounded-full shadow-md">
+            AI‑Powered Kitchen Assistant
+          </Badge>
+          <h1 className="text-5xl font-bold">Cook Smarter, Live Better</h1>
+          <p className="text-xl leading-relaxed text-white/90">
+            Effortless cooking powered by AI. <strong>Track your ingredients.</strong> Discover real‑time recipes. <strong>Master your meals—without the mess.</strong>
+          </p>
+          <div className="flex gap-6 pt-6">
+            <Button className="bg-cta text-white rounded-full px-6 py-3">
+              Start Free Trial <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+            <Button variant="outline" className="border-white text-orange-500 rounded-full px-6 py-3">
+              <Play className="w-5 h-5 mr-2" /> Watch Demo
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div ref={scrollCue} className="absolute bottom-20 left-1/2 -translate-x-1/2 opacity-70 text-white transform-gpu">
+        <ChevronDown className="w-6 h-6" />
+      </div>
     </section>
-  )
+  );
 }
